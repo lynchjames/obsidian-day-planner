@@ -53,6 +53,7 @@ export class PlanItem {
 
     matchIndex: number;
     charIndex: number;
+    completion: string;
     isCompleted: boolean;
     isPast: boolean;
     isBreak: boolean;
@@ -62,18 +63,22 @@ export class PlanItem {
     rawTime: string;
     text: string;
     raw: string;
-
-    constructor(matchIndex: number, charIndex: number, isCompleted: boolean, 
+    tags: string[];
+    
+    constructor(matchIndex: number, charIndex: number, completion: string, 
         isBreak: boolean, isEnd: boolean, time: Date, rawTime:string, text: string, raw: string){
         this.matchIndex = matchIndex;
         this.charIndex = charIndex;
-        this.isCompleted = isCompleted;
+        this.completion = completion;
+        this.isCompleted = !!completion.trim()
         this.isBreak = isBreak;
         this.isEnd = isEnd;
         this.time = time;
         this.rawTime = rawTime;
         this.text = text;
         this.raw = raw;
+
+        this.tags = text.match(/(#[a-z0-9][a-z0-9\-_]*)/ig);
     }
 }
 

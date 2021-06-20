@@ -37,7 +37,7 @@ export default class Parser {
         const results = regexMatches.map((match) => {
             try {
                 const value = match.value;
-                const isCompleted = this.matchValue(value.groups.completion, 'x');
+                const completion = value.groups.completion;
                 const isBreak = value.groups.break !== undefined;
                 const isEnd = value.groups.end !== undefined;
                 const time = new Date();
@@ -47,7 +47,7 @@ export default class Parser {
                 return this.planItemFactory.getPlanItem(
                     match.index, 
                     value.index, 
-                    isCompleted, 
+                    completion,
                     isBreak,
                     isEnd,
                     time, 
